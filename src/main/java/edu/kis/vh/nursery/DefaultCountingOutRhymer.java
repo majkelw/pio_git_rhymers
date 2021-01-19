@@ -3,7 +3,7 @@ package edu.kis.vh.nursery;
 public class DefaultCountingOutRhymer {
     private final int SIZE_OF_ARRAY = 12;
     private final int ERROR_CODE = -1;
-    private int[] numbers = new int[SIZE_OF_ARRAY];
+    private final int[] numbers = new int[SIZE_OF_ARRAY];
 
     private int index = ERROR_CODE;
 
@@ -32,11 +32,4 @@ public class DefaultCountingOutRhymer {
         return numbers[index--];
     }
 
-    public void setNumbers(int[] numbers) {
-        this.numbers = numbers;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
 }
