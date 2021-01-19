@@ -32,4 +32,7 @@ public class DefaultCountingOutRhymer {
         return numbers[index--];
     }
 
+    public int getIndex() {
+        return index;
+    }
 }
