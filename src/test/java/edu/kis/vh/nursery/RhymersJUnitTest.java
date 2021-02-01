@@ -5,74 +5,73 @@ import org.junit.Test;
 
 public class RhymersJUnitTest {
 
-	@Test
-	public void testCountIn() {
-		DefaultCountingOutRhymer rhymer = new DefaultCountingOutRhymer();
-		int testValue = 4;
-		rhymer.countIn(testValue);
+    private static final int TEST_VALUE = 4;
+	private static final int BIG_TEST_VALUE = 888;
+    private static final int EMPTY_STACK_VALUE = -1;
 
-		int result = rhymer.peekaboo();
-		Assert.assertEquals(testValue, result);
-	}
+    @Test
+    public void testCountIn() {
+        DefaultCountingOutRhymer rhymer = new DefaultCountingOutRhymer();
+        rhymer.countIn(TEST_VALUE);
 
-	@Test
-	public void testCallCheck() {
-		DefaultCountingOutRhymer rhymer = new DefaultCountingOutRhymer();
-		boolean result = rhymer.isEmpty();
-		Assert.assertEquals(true, result);
+        int result = rhymer.peekaboo();
+        Assert.assertEquals(TEST_VALUE, result);
+    }
 
-		rhymer.countIn(888);
+    @Test
+    public void testIsEmpty() {
+        DefaultCountingOutRhymer rhymer = new DefaultCountingOutRhymer();
+        boolean result = rhymer.isEmpty();
+        Assert.assertEquals(true, result);
 
-		result = rhymer.isEmpty();
-		Assert.assertEquals(false, result);
-	}
+        rhymer.countIn(BIG_TEST_VALUE);
 
-	@Test
-	public void testIsFull() {
-		DefaultCountingOutRhymer rhymer = new DefaultCountingOutRhymer();
-		final int STACK_CAPACITY = 12;
-		for (int i = 0; i < STACK_CAPACITY; i++) {
-			boolean result = rhymer.isFull();
-			Assert.assertEquals(false, result);
-			rhymer.countIn(888);
-		}
+        result = rhymer.isEmpty();
+        Assert.assertEquals(false, result);
+    }
 
-		boolean result = rhymer.isFull();
-		Assert.assertEquals(true, result);
-	}
+    @Test
+    public void testIsFull() {
+        DefaultCountingOutRhymer rhymer = new DefaultCountingOutRhymer();
+        final int STACK_CAPACITY = 12;
+        for (int i = 0; i < STACK_CAPACITY; i++) {
+            boolean result = rhymer.isFull();
+            Assert.assertEquals(false, result);
+            rhymer.countIn(BIG_TEST_VALUE);
+        }
 
-	@Test
-	public void testPeekaboo() {
-		DefaultCountingOutRhymer rhymer = new DefaultCountingOutRhymer();
-		final int EMPTY_STACK_VALUE = -1;
+        boolean result = rhymer.isFull();
+        Assert.assertEquals(true, result);
+    }
 
-		int result = rhymer.peekaboo();
-		Assert.assertEquals(EMPTY_STACK_VALUE, result);
+    @Test
+    public void testPeekaboo() {
+        DefaultCountingOutRhymer rhymer = new DefaultCountingOutRhymer();
 
-		int testValue = 4;
-		rhymer.countIn(testValue);
+        int result = rhymer.peekaboo();
+        Assert.assertEquals(EMPTY_STACK_VALUE, result);
 
-		result = rhymer.peekaboo();
-		Assert.assertEquals(testValue, result);
-		result = rhymer.peekaboo();
-		Assert.assertEquals(testValue, result);
-	}
+        rhymer.countIn(TEST_VALUE);
 
-	@Test
-	public void testCountOut() {
-		DefaultCountingOutRhymer rhymer = new DefaultCountingOutRhymer();
-		final int EMPTY_STACK_VALUE = -1;
+        result = rhymer.peekaboo();
+        Assert.assertEquals(TEST_VALUE, result);
+        result = rhymer.peekaboo();
+        Assert.assertEquals(TEST_VALUE, result);
+    }
 
-		int result = rhymer.countOut();
-		Assert.assertEquals(EMPTY_STACK_VALUE, result);
+    @Test
+    public void testCountOut() {
+        DefaultCountingOutRhymer rhymer = new DefaultCountingOutRhymer();
 
-		int testValue = 4;
-		rhymer.countIn(testValue);
+        int result = rhymer.countOut();
+        Assert.assertEquals(EMPTY_STACK_VALUE, result);
 
-		result = rhymer.countOut();
-		Assert.assertEquals(testValue, result);
-		result = rhymer.countOut();
-		Assert.assertEquals(EMPTY_STACK_VALUE, result);
-	}
+        rhymer.countIn(TEST_VALUE);
+
+        result = rhymer.countOut();
+        Assert.assertEquals(TEST_VALUE, result);
+        result = rhymer.countOut();
+        Assert.assertEquals(EMPTY_STACK_VALUE, result);
+    }
 
 }
