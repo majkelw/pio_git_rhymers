@@ -1,9 +1,9 @@
 package edu.kis.vh.nursery;
 
 public class DefaultCountingOutRhymer {
-    private final int SIZE_OF_ARRAY = 12;
-    private final int ERROR_CODE = -1;
-    private final int[] numbers = new int[SIZE_OF_ARRAY];
+    private static final int SIZE_OF_ARRAY = 12;
+    private static final int ERROR_CODE = -1;
+    private static final int[] numbers = new int[SIZE_OF_ARRAY];
 
     private int index = ERROR_CODE;
 
@@ -17,7 +17,7 @@ public class DefaultCountingOutRhymer {
     }
 
     public boolean isFull() {
-        return index == SIZE_OF_ARRAY + ERROR_CODE;
+        return index == SIZE_OF_ARRAY - 1;
     }
 
     protected int peekaboo() {
